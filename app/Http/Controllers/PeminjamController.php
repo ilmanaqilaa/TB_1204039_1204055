@@ -25,6 +25,8 @@ class PeminjamController extends Controller
             'nama_user' => $request->kolNamaPeminjam,
             'jenis_user' => $request->pilihJenis,
             'password' => $request->kolKonfirmasiPasswordPeminjam,
+            'email' => $request->kolEmail,
+            'telpon' => $request->kolTelepon
         ]);
 
         return redirect('/peminjam');

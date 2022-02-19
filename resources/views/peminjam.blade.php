@@ -33,6 +33,8 @@
                                 <th>Nomor User</th>
                                 <th>Nama User</th>
                                 <th>Jenis User</th>
+                                <th>Email</th>
+                                <th>Telepon</th>
                                 <th>Aksi</th>
                             </thead>
                             <tbody>
@@ -45,6 +47,8 @@
                                     <td>{{ $l->nomor_user }}</td>
                                     <td>{{ $l->nama_user }}</td>
                                     <td>{{ $l->jenis_user }}</td>
+                                    <td>{{ $l->email }}</td>
+                                    <td>{{ $l->telpon }}</td>
                                     <td>
                                         <button class="btn btn-success" onclick="modalEditPeminjam({{ $l->nomor_user }})">Edit</button>
                                         <button class="btn btn-danger" onclick="modalHapusPeminjam({{ $l->nomor_user }})">Hapus</button>
@@ -67,6 +71,12 @@
                                         @csrf
                                             <label>Nama Peminjam</label><br>
                                             <input type="text" class="form-control mb-3" name="kolNamaPeminjam" id="kolNamaPeminjam">
+
+                                            <label>Email Peminjam</label><br>
+                                            <input type="email" class="form-control mb-3" name="kolEmail" id="kolEmailPeminjam">
+
+                                            <label>Telepon Peminjam</label><br>
+                                            <input type="number" class="form-control mb-3" name="kolTelepon" id="kolTeleponPeminjam">
 
                                             <label>Jenis Peminjam</label><br>
                                             <select class="form-control mb-3" name="pilihJenis" id="pilihJenis">
@@ -106,6 +116,12 @@
                                             <label>Nama Peminjam</label><br>
                                             <input type="text" class="form-control mb-3" name="kolNamaPeminjam" id="kolNamaPeminjam2">
                                             <input type="hidden" value="" id="kolID" name="kolID">
+
+                                            <label>Email Peminjam</label><br>
+                                            <input type="email" class="form-control mb-3" name="kolEmail" id="kolEmail">
+
+                                            <label>Telepon Peminjam</label><br>
+                                            <input type="number" class="form-control mb-3" name="kolTelepon" id="kolTelepon">
 
                                             <label>Jenis Peminjam</label><br>
                                             <select class="form-control mb-3" name="pilihJenis" id="pilihJenis2">
@@ -148,6 +164,8 @@
             $.ajax({url: "/peminjam/"+id, success: function(result){
                 document.getElementById('kolID').value = result['nomor_user'];
                 document.getElementById('kolNamaPeminjam2').value = result['nama_user'];
+                document.getElementById('kolEmail').value = result['email'];
+                document.getElementById('kolTelepon').value = result['telpon'];
                 document.getElementById('pilihJenis2').value = result['jenis_user'];
                 document.getElementById('kolPasswordPeminjam2').value = result['password'];
                 document.getElementById('kolKonfirmasiPasswordPeminjam2').value = result['password'];

@@ -44,10 +44,10 @@
                                 </select>
 
                                 <label class="label-card">Tanggal Awal Peminjaman</label class="label-card">
-                                <input type="date" class="form-control" id="pilihTglAwal1" name="pilihTglAwal1">
+                                <input type="date" class="form-control" id="pilihTglAwal1" name="pilihTglAwal1" onchange="cekRangeTanggal1()">
 
                                 <label class="label-card">Tanggal Akhir Peminjaman</label>
-                                <input type="date" class="form-control" id="pilihTglAkhir1" name="pilihTglAkhir1">
+                                <input type="date" class="form-control" id="pilihTglAkhir1" name="pilihTglAkhir1" onchange="cekRangeTanggal1()">
 
                                 <label class="label-card">Format Export :</label><br>
                                 <div class="custom-control custom-radio custom-control-inline">
@@ -75,16 +75,20 @@
 
                                 if((!tglAwal == '') || !(tglAkhir == '')){
                                     if(rad1.checked == true || rad2.checked == true){
+                                        if (tglAwal > tglAkhir) {
+                                            swal('Peringatan','Rentang Tanggal Tidak Benar!','warning');
+                                            return false;
+                                        }
                                         return true;
                                     }else{
                                         swal('Peringatan','Format Export belum dipilih!','warning');
                                         return false;
                                     }
-                                }else{
+                                }
+                                else{
                                     swal('Peringatan','Rentang Tanggal Laporan harus diisi!','warning');
                                     return false;
                                 }
-                               
                                 
                         }
                         function cekExport2(){
@@ -95,11 +99,39 @@
 
                                 if((!tglAwal == '') || !(tglAkhir == '')){
                                     if(rad1.checked == true || rad2.checked == true){
+                                        if (tglAwal > tglAkhir) {
+                                            swal('Peringatan','Rentang Tanggal Tidak Benar!','warning');
+                                            return false;
+                                        }
                                         return true;
                                     }
                                 }
                                 swal('Peringatan','Rentang Tanggal Laporan harus diisi!','warning');
                                 return false;
+                        }
+
+                        function cekRangeTanggal1() {
+                            var tglAwal = document.getElementById("pilihTglAwal1").value
+                            var tglAkhir = document.getElementById("pilihTglAkhir1").value
+
+                            if (tglAwal != '' && tglAkhir != '') {
+                                if (tglAwal > tglAkhir) {
+                                    swal('Peringatan','Rentang Tanggal Tidak Benar!','warning');
+                                    return false;
+                                }
+                            }
+                        }
+
+                        function cekRangeTanggal2() {
+                            var tglAwal = document.getElementById("pilihTglAwal2").value
+                            var tglAkhir = document.getElementById("pilihTglAkhir2").value
+
+                            if (tglAwal != '' && tglAkhir != '') {
+                                if (tglAwal > tglAkhir) {
+                                    swal('Peringatan','Rentang Tanggal Tidak Benar!','warning');
+                                    return false;
+                                }
+                            }
                         }
                     </script>
 
@@ -120,10 +152,10 @@
                                 </select>
 
                                 <label class="label-card">Tanggal Awal Pembelian</label class="label-card">
-                                <input type="date" class="form-control" id="pilihTglAwal2" name="pilihTglAwal2">
+                                <input type="date" class="form-control" id="pilihTglAwal2" name="pilihTglAwal2" onchange="cekRangeTanggal2()">
 
                                 <label class="label-card">Tanggal Akhir Pembelian</label>
-                                <input type="date" class="form-control" id="pilihTglAkhir2" name="pilihTglAkhir2">
+                                <input type="date" class="form-control" id="pilihTglAkhir2" name="pilihTglAkhir2" onchange="cekRangeTanggal2()">
  
                                 <label class="label-card">Format Export :</label><br>
                                 <div class="custom-control custom-radio custom-control-inline">

@@ -78,7 +78,7 @@
                         <input type="text" class="form-control" name="kolNamaInv" id="kolNamaInv" placeholder="Isi nama inventaris baru di sini">
 
                         <label class="label-modal">Tanggal Pembelian</label><br>
-                        <input type="date" class="form-control" name="kolTglBeli" id="kolTglBeli">
+                        <input type="date" class="form-control" name="kolTglBeli" id="kolTglBeli" onchange="cekRangeTanggal()">
 
                         <label class="label-modal">Harga Beli</label><br>
                         <input type="number" class="form-control" name="kolHargaInv" id="kolHargaInv">
@@ -115,6 +115,21 @@
             var satuanI = document.getElementById('pilihSatuanInv').value;
             var jumlahI = document.getElementById('kolJumlahInv').value;
 
+            var getTgl = document.getElementById("kolTglBeli").value
+
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+
+            today = yyyy + '-' + mm + '-' + dd;
+
+            if (getTgl > today) {
+                swal('Peringatan','Rentang Tanggal Tidak Benar!','warning');
+                console.log(getTgl+"|"+today)
+                return false;
+            }
+
             if(cek(kategoriI,'Kategori Inventaris Belum Dipilih!')){
                 if(cek(namaI,'Nama Inventaris Belum Diisi!')){
                     if(cek(tglI,'Tanggal Pembelian Belum Diisi!')){
@@ -147,6 +162,23 @@
                 return false;
             }   
             return true;
+        }
+
+        function cekRangeTanggal() {
+            var getTgl = document.getElementById("kolTglBeli").value
+
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+
+            today = yyyy + '-' + mm + '-' + dd;
+
+            if (getTgl > today) {
+                swal('Peringatan','Rentang Tanggal Tidak Benar!','warning');
+                console.log(getTgl+"|"+today)
+                return false;
+            }
         }
     </script>
     <!-- Jquery -->
